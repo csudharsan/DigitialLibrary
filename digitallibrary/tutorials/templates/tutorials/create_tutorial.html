@@ -1,0 +1,47 @@
+{% extends 'tutorials/base.html' %}
+{% block title %}Add New Tutorial{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12 col-md-7">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h3>Add a new Tutorial</h3>
+					<form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						{% include 'tutorials/form_template.html' %}
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-success">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12 col-md-5">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h3>What is Digital Library?</h3>
+					<p>Digital library App allows you to upload different books as pdf. Helping 
+					 users to read and download online</p>
+					 <h3>How to add a book?</h3>
+					 <p>User have to first login, create tutorial and upload books under a tutorial section</p>
+					 <h3>How to add Tutorial logo</h3>
+					 <ul>
+					 	<li>Have resolution of 512*512</li>
+					 	<li>Use .png, .jpg formats</li>
+					 	<li>Squre images looks good</li>
+					 </ul>		
+				</div>
+			</div>
+		
+		</div>
+	</div>
+
+</div>
+
+
+{% endblock %}

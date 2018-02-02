@@ -1,0 +1,39 @@
+<!--  Load path to the static files -->
+{% extends 'tutorials/base.html' %}
+{% block body %}
+
+<div class="books-container container-fluid">
+	<!-- Tutorials -->
+	<div class="row">
+		<div class="col-sm12">
+			<h3>Software Tutorials</h3>
+		</div>
+		{% if all_softwaretuts %}
+			{% for soft_tuts in all_softwaretuts %}
+				<div class="col-sm-4 col-md-3">
+					<div class="thumbnail">
+						<a href="{% url 'tutorials:detail' soft_tuts.id %}"><img src="{{ soft_tuts.lang_logo.url }}"></a>
+						<div class="caption">
+							<h2>{{ soft_tuts.language }}</h2>
+	                        <p>{{ soft_tuts.language_description }}</p>
+						</div>
+						<!-- View Tutorial -->
+						<a href="{% url 'tutorials:detail' soft_tuts.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+						<!--  Delete Tutorial -->
+						<form action="{% url 'tutorials:delete_tutorial' soft_tuts.id %}" method="POST" style="display: inline">
+							{% csrf_token %}
+							<input type="hidden" name="soft_tuts_id" value="{{ soft_tuts.id }}"/>
+							<button type="submit" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-trash"></span>
+							</button>
+						</form>
+						
+					</div>
+					
+				</div>
+			{% endfor %}
+		{% else %}
+			<h1>Nothing to display</h1>
+		{% endif %}
+	</div>
+{% endblock %}

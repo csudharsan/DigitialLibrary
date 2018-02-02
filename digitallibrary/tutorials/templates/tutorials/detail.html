@@ -1,0 +1,75 @@
+{% extends 'tutorials/base.html' %}
+{% block title %}Book{% endblock %}
+{% block body %}
+
+
+<div class="container-fluid">
+	<div class="row">
+		<!--  left: tutorial info -->
+		<div class="col-sm-4 col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<a href="{% url 'tutorials:detail' soft_tuts.id %}">
+					{% if soft_tuts.lang_logo %}
+						<img src="{{ soft_tuts.lang_logo.url }}" class="img-responsive"></a>
+					{% else %}
+						<h3>No image</h3>
+					{% endif%}
+					<h1>{{ soft_tuts.language }}</h1>
+					<p>{{ soft_tuts.language_description }}</p>
+				</div>
+			</div>
+		</div>
+		<!--  right: Add book info -->
+		<div class="col-sm-8 col-md-9">
+			  <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <!--<li role="presentation" class="active"><a href="#">View All</a></li>   -->
+                <li role="presentation"><a href="{% url 'tutorials:create_book' soft_tuts.id %}">Add New Book</a></li>
+            </ul>
+            
+            <div class="panel panel-default">
+	            <div class="panel-body">
+	            	<h3>All books</h3>
+	            	<table class="table">
+	            	<thead>
+	            	<tr>
+	            		<th>Book Title</th>
+	            		<th>Book Author</th>
+	            		<th>View/Download</th>
+	            		<th>Price</th>
+	            		
+	            	</tr>
+	            	</thead>
+	            	<tbody>
+	            	{% for book in all_books %}
+	            	<tr>
+	            		<td>{{ book.book_title }}</td>
+	            		<td>{{ book.book_author }}</td>
+	            		<td>
+	            			<a href={{ book.pdf_file.url }}>
+	            				<button type="button" class="btn btn-success btn-xs">
+	            					<div class="col-sm-12 col-md-3"> <span class="glyphicon glyphicon-open"></span></div>
+	            				</button>
+	            			</a>
+	            		</td>
+	            		<td>{{ book.price }}</td>
+	            		<td>
+		            		<form action="{% url 'books:delete_book' soft_tuts.id book.id %}" method="post" style="display: inline;">
+		            			{% csrf_token %}
+			            		<input type="hidden" name="book_id" value="{{ soft_tuts.id }}"/>
+			            		<button type="submit">
+			            			<span class="glyphicon glyphicon-remove"></span>
+			            		</button>
+		            		</form>
+		            	</td>
+		            <tr>
+	            	{% endfor %}
+	            	</tbody>
+	            	</table>
+	            </div>
+	          </div>
+            </div>
+		</div>
+</div>
+
+{% endblock %}

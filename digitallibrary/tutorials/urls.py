@@ -1,0 +1,7 @@
+from django.conf.urls import urlfrom django.conf import settingsfrom . import views
+
+app_name = 'tutorials'
+
+urlpatterns = [        # /tutorials/
+        url(r'^$', views.index, name='index'),        # /tutorials/tutorials        url(r'^view_books$', views.view_books, name='view_books'),        # /register/        url(r'^user_registration/$', views.user_registration, name='user_registration'),        # /user_login/        url(r'^user_login/$', views.user_login, name='user_login'),        # /user_logout/        url(r'^user_logout/$', views.user_logout, name='user_logout'),        # /tutorials/71/        url(r'^(?P<softwaretutorials_id>[0-9]+)/$', views.detail, name='detail'),        #/create_tutorial/        url(r'^create_tutorial/$', views.create_tutorial, name='create_tutorial'),        #/tutorials/71/create_book        url(r'^(?P<softwaretutorials_id>[0-9]+)/create_book/$', views.create_book, name='create_book'),        #/tutorials/tutorial_id/delete_book/book_id        url(r'^(?P<softwaretutorials_id>[0-9]+)/delete_book/(?P<book_id>[0-9]+)$', views.delete_book, name='delete_book'),        #/tutorials/71/delete_tutorial/        url(r'^(?P<softwaretutorials_id>[0-9]+)/delete_tutorial/$', views.delete_tutorial, name='delete_tutorial'),
+    ] 

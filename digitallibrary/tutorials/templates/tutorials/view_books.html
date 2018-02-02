@@ -1,0 +1,42 @@
+{% extends 'tutorials/base.html' %}
+{% block title %}Add New Tutorial{% endblock %}
+{% block body %}
+	<h3>All Books</h3>
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12">
+		<table class="table">
+           	<thead>
+           	<tr>
+           		<th>TutorialName</th>
+           		<th>Book Title</th>
+           		<th>Book Author</th>
+           		<th>View/Download</th>
+           		<th>Price</th>
+           		
+           	</tr>
+           	</thead>
+           	<tbody>
+           		{% for soft_tut in all_softwaretuts %}
+            		{% for book in soft_tut.book_set.all %}
+		            	<tr>
+		            		<td>{{ soft_tut.language }}</td>
+		            		<td>{{ book.book_title }}</td>
+		            		<td>{{ book.book_author }}</td>
+		            		<td>
+		            			<a href={{ book.pdf_file.url }}>
+		            				<button type="button" class="btn btn-success btn-xs">
+		            					<div class="col-sm-12 col-md-3"> <span class="glyphicon glyphicon-open"></span></div>
+		            				</button>
+		            			</a>
+		            		</td>
+		            		<td>{{ book.price }}</td>
+		              {% endfor %}
+		         {% endfor %}
+         </table>
+	            	
+		</div>
+	</div>
+	</div>
+	
+{% endblock%}

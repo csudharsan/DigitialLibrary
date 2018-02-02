@@ -1,0 +1,44 @@
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>{% block title %}DigitalLibrary{% endblock %}</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+	<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="{% static 'books/style.css' %}"/>
+</head>
+<body>
+		<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			 <!-- Header -->
+	        <div class="navbar-header">
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+	            </button>
+	            <a class="navbar-brand" href="{% url 'tutorials:index' %}">DigitalLibrary</a>
+	        </div>
+			
+			<!-- Items -->
+			<div class="collapse navbar-collapse id=topNavBar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</a></li>
+					<li ><a href="{% url 'tutorials:index' %}"><span class="glyphicon glyphicon-education" aria-hidden="true"></span>&nbsp;Tutorials</a></li>
+					<li ><a href="{% url 'tutorials:view_books' %}"><span class="glyphicon glyphicons-book-open" aria-hidden="true"></span>&nbsp;Books</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search" method="get" action="{% url 'tutorials:index' %}">
+	                <div class="form-group">
+	                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+	                </div>
+	                <button type="submit" class="btn btn-default">Search</button>
+	            </form>
+	            <ul class="nav navbar-nav navbar-right">
+	            	<li><a href="{% url 'tutorials:create_tutorial' %}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Tutorial</a></li>
+	            	<li><a href="{% url 'tutorials:user_logout' %}"><span class="glyphicon glyphicon-off"></span>&nbsp; Logout</a></li>
+	            </ul>
+			 </div>
+		</div>
+	</nav>
+	
+{% block body %}
+{% endblock %}
+</body>
+</html>
